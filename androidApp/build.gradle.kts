@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.googleServices)
 }
 
 kotlin {
@@ -18,6 +19,16 @@ dependencies {
 
     implementation(libs.compose.uiToolingPreview)
     debugImplementation(libs.compose.uiTooling)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.ktor.client.okhttp)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    //implementation(libs.koin.core)
+    //implementation(libs.koin.ktor)
+    //implementation(libs.koin.compose.viewmodel)
 }
 
 android {
@@ -37,12 +48,21 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
+        val webClientId = providers.gradleProperty("WEB_CLIENT_ID").orNull ?: ""
+        debug {
+            buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+        }
+        release {
             isMinifyEnabled = false
+            buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
