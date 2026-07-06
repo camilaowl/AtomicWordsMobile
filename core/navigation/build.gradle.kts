@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.androidLint)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
 }
 
@@ -13,7 +11,7 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     android {
-        namespace = "com.ca.auth"
+        namespace = "com.ca.navigation"
         compileSdk {
             version = release(36) {
                 minorApiLevel = 1
@@ -38,7 +36,13 @@ kotlin {
     // A step-by-step guide on how to include this library in an XCode
     // project can be found here:
     // https://developer.android.com/kotlin/multiplatform/migrate
-    val xcfName = "feature:authKit"
+    val xcfName = "core:navigationKit"
+
+    iosX64 {
+        binaries.framework {
+            baseName = xcfName
+        }
+    }
 
     iosArm64 {
         binaries.framework {
@@ -60,19 +64,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core:navigation"))
-
                 implementation(libs.kotlin.stdlib)
-                implementation(project.dependencies.platform(libs.koin.bom))
-                implementation(libs.koin.core)
-                implementation(libs.koin.compose)
-                implementation(libs.koin.compose.viewmodel)
-                implementation(libs.compose.runtime)
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.material3)
-                implementation(libs.compose.ui)
-                implementation(libs.compose.components.resources)
-                implementation(libs.compose.uiToolingPreview)
                 implementation(libs.compose.navigation)
             }
         }
@@ -85,7 +77,6 @@ kotlin {
 
         androidMain {
             dependencies {
-                implementation(libs.koin.android)
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.

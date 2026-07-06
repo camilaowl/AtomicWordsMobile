@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.cocoapods)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -45,6 +46,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core:network"))
             implementation(project(":core:auth"))
+            implementation(project(":core:navigation"))
             implementation(project(":feature:auth"))
 
             implementation(libs.compose.runtime)
@@ -53,6 +55,7 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.components.resources)
             implementation(libs.compose.uiToolingPreview)
+            implementation(libs.compose.navigation)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.ktor.client.core)

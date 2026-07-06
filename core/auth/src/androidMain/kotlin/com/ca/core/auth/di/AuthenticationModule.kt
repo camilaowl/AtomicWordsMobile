@@ -16,7 +16,7 @@ actual fun authenticationModule(webClientId: String) = module {
             .setFilterByAuthorizedAccounts(true)
             .setServerClientId(webClientId)
             .setAutoSelectEnabled(true)
-            .setNonce("nonce")
+            .setNonce(generateSecureRandomNonce())
             .build()
     }
 }
