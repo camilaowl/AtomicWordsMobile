@@ -47,7 +47,12 @@ kotlin {
             implementation(project(":core:network"))
             implementation(project(":core:auth"))
             implementation(project(":core:navigation"))
+            implementation(project(":core:designsystem"))
             implementation(project(":feature:auth"))
+            implementation(project(":feature:home"))
+            implementation(project(":feature:dictionary"))
+            implementation(project(":feature:training"))
+            implementation(project(":feature:profile"))
 
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
