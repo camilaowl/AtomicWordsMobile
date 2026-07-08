@@ -30,3 +30,12 @@ dependencyResolutionManagement {
 
 include(":androidApp")
 include(":shared")
+include(":core:network")
+include(":core:auth")
+include(":feature:auth")
+include(":core:navigation")
+include(":feature:home")
+include(":feature:dictionary")
+include(":feature:profile")
+include(":feature:training")
+include(":core:designsystem")
