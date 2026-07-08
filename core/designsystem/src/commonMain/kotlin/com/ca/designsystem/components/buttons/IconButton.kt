@@ -2,12 +2,10 @@ package com.ca.designsystem.components.buttons
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import atomicwords.core.designsystem.generated.resources.Res
 import atomicwords.core.designsystem.generated.resources.add_24px
+import com.ca.designsystem.theme.Theme
 import org.jetbrains.compose.resources.painterResource
 
 @ExperimentalMaterial3Api
@@ -26,9 +25,9 @@ fun IconButton(
     Button(
         modifier = modifier
             .size(56.dp)
-            .clip(CircleShape),
+            .clip(Theme.shapes.round),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
+            containerColor = Theme.colors.primary,
             contentColor = Color.White
         ),
         onClick = onClick,
