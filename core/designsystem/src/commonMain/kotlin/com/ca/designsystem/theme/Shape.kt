@@ -1,0 +1,28 @@
+package com.ca.designsystem.theme
+
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.dp
+
+val Shapes = AtomicShapes(
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(8.dp),
+    large = RoundedCornerShape(12.dp),
+    round = RoundedCornerShape(50),
+    bottomSheet = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+)
+
+@Immutable
+data class AtomicShapes(
+    val small: Shape,
+    val medium: Shape,
+    val large: Shape,
+    val round: Shape,
+    val bottomSheet: Shape
+)
+
+val LocalAtomicShapes = staticCompositionLocalOf<AtomicShapes> {
+    error("No AtomicShapes Provided")
+}
